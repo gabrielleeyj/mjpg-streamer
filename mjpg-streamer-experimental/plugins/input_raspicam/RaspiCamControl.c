@@ -759,7 +759,7 @@ int raspicamcontrol_set_saturation(MMAL_COMPONENT_T *camera, int saturation)
    if (saturation >= -100 && saturation <= 100)
    {
       MMAL_RATIONAL_T value = {saturation, 100};
-      ret = mmal_status_to_int(mmal_port_parameter_set_rational(camera->control, MMAL_PARAMETER_SATURATION, value));
+      ret = mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_SATURATION, value));
    }
    else
    {
@@ -785,7 +785,7 @@ int raspicamcontrol_set_sharpness(MMAL_COMPONENT_T *camera, int sharpness)
    if (sharpness >= -100 && sharpness <= 100)
    {
       MMAL_RATIONAL_T value = {sharpness, 100};
-      ret = mmal_status_to_int(mmal_port_parameter_set_rational(camera->control, MMAL_PARAMETER_SHARPNESS, value));
+      ret = mmal_status_to_int(mmal_port_paremeterrational(camera->control, MMAL_PARAMETER_SHARPNESS, value));
    }
    else
    {
@@ -812,7 +812,7 @@ int raspicamcontrol_set_contrast(MMAL_COMPONENT_T *camera, int contrast)
    if (contrast >= -100 && contrast <= 100)
    {
       MMAL_RATIONAL_T value = {contrast, 100};
-      ret = mmal_status_to_int(mmal_port_parameter_set_rational(camera->control, MMAL_PARAMETER_CONTRAST, value));
+      ret = mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_CONTRAST, value));
    }
    else
    {
@@ -839,7 +839,7 @@ int raspicamcontrol_set_brightness(MMAL_COMPONENT_T *camera, int brightness)
    if (brightness >= 0 && brightness <= 100)
    {
       MMAL_RATIONAL_T value = {brightness, 100};
-      ret = mmal_status_to_int(mmal_port_parameter_set_rational(camera->control, MMAL_PARAMETER_BRIGHTNESS, value));
+      ret = mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_BRIGHTNESS, value));
    }
    else
    {
@@ -861,7 +861,7 @@ int raspicamcontrol_set_ISO(MMAL_COMPONENT_T *camera, int ISO)
    if (!camera)
       return 1;
 
-   return mmal_status_to_int(mmal_port_parameter_set_uint32(camera->control, MMAL_PARAMETER_ISO, ISO));
+   return mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_ISO, ISO));
 }
 
 /**
@@ -896,7 +896,7 @@ int raspicamcontrol_set_video_stabilisation(MMAL_COMPONENT_T *camera, int vstabi
    if (!camera)
       return 1;
 
-   return mmal_status_to_int(mmal_port_parameter_set_boolean(camera->control, MMAL_PARAMETER_VIDEO_STABILISATION, vstabilisation));
+   return mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_VIDEO_STABILISATION, vstabilisation));
 }
 
 /**
@@ -910,7 +910,7 @@ int raspicamcontrol_set_exposure_compensation(MMAL_COMPONENT_T *camera, int exp_
    if (!camera)
       return 1;
 
-   return mmal_status_to_int(mmal_port_parameter_set_int32(camera->control, MMAL_PARAMETER_EXPOSURE_COMP , exp_comp));
+   return mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_EXPOSURE_COMP , exp_comp));
 }
 
 
@@ -1065,9 +1065,9 @@ int raspicamcontrol_set_rotation(MMAL_COMPONENT_T *camera, int rotation)
    int ret;
    int my_rotation = ((rotation % 360 ) / 90) * 90;
 
-   ret = mmal_port_parameter_set_int32(camera->output[0], MMAL_PARAMETER_ROTATION, my_rotation);
-   mmal_port_parameter_set_int32(camera->output[1], MMAL_PARAMETER_ROTATION, my_rotation);
-   mmal_port_parameter_set_int32(camera->output[2], MMAL_PARAMETER_ROTATION, my_rotation);
+   ret = mmal_port_parameter_set(camera->output[0], MMAL_PARAMETER_ROTATION, my_rotation);
+   mmal_port_parameter_set(camera->output[1], MMAL_PARAMETER_ROTATION, my_rotation);
+   mmal_port_parameter_set(camera->output[2], MMAL_PARAMETER_ROTATION, my_rotation);
 
    return ret;
 }
@@ -1128,7 +1128,7 @@ int raspicamcontrol_set_shutter_speed(MMAL_COMPONENT_T *camera, int speed)
    if (!camera)
       return 1;
 
-   return mmal_status_to_int(mmal_port_parameter_set_uint32(camera->control, MMAL_PARAMETER_SHUTTER_SPEED, speed));
+   return mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_SHUTTER_SPEED, speed));
 }
 
 /**
@@ -1157,7 +1157,7 @@ int raspicamcontrol_set_stats_pass(MMAL_COMPONENT_T *camera, int stats_pass)
    if (!camera)
       return 1;
 
-   return mmal_status_to_int(mmal_port_parameter_set_boolean(camera->control, MMAL_PARAMETER_CAPTURE_STATS_PASS, stats_pass));
+   return mmal_status_to_int(mmal_port_parameter_set(camera->control, MMAL_PARAMETER_CAPTURE_STATS_PASS, stats_pass));
 }
 
 

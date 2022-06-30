@@ -882,7 +882,7 @@ void *worker_thread(void *arg)
   DBG("Encoder enabled, creating pool and connecting ports\n");
 
   /* Create pool of buffer headers for the output port to consume */
-  pool = mmal_port_pool_create(encoder_output, encoder_output->buffer_num, encoder_output->buffer_size);
+  pool = mmal_pool_create(encoder_output, encoder_output->buffer_num, encoder_output->buffer_size);
 
   if (!pool)
   {
@@ -1054,7 +1054,7 @@ void *worker_thread(void *arg)
   // Get rid of any port buffers first
   if (pool)
   {
-    mmal_port_pool_destroy(encoder->output[0], pool);
+    mmal_pool_destroy(encoder->output[0], pool);
   }
 
   if (encoder)
